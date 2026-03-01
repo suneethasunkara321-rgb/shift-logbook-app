@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Management</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h2>User Management</h2>
+<a href="/dashboard">Back to Dashboard</a>
+
+<h3>Add User (Default Password: 123456)</h3>
+<form method="POST" action="/add-user">
+<input name="email" placeholder="User Email" required />
+<select name="role">
+<option>Employee</option>
+<option>Manager</option>
+<option>Admin</option>
+</select>
+<button type="submit">Add User</button>
+</form>
+
+<h3>Existing Users</h3>
+<table border="1">
+<tr><th>ID</th><th>Email</th><th>Role</th><th>Action</th></tr>
+<% users.forEach(user => { %>
+<tr>
+<td><%= user.id %></td>
+<td><%= user.email %></td>
+<td><%= user.role %></td>
+<td>
+<form method="POST" action="/delete-user/<%= user.id %>" style="display:inline;">
+<button type="submit">Delete</button>
+</form>
+</td>
+</tr>
+<% }) %>
+</table>
+</body>
+</html>

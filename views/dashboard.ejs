@@ -9,6 +9,10 @@
 <h2>Welcome <%= user.email %> (<%= user.role %>)</h2>
 <a href="/logout">Logout</a>
 
+<% if (user.role === 'Admin') { %>
+<a href="/users">Manage Users</a>
+<% } %>
+
 <h3>Add Shift Log</h3>
 <form method="POST" action="/add-log">
 <select name="shift">
@@ -31,7 +35,7 @@
 <button type="submit">Submit</button>
 </form>
 
-<h3>All Logs</h3>
+<h3>Logs</h3>
 <table border="1">
 <tr><th>Date</th><th>Employee</th><th>Shift</th><th>Status</th></tr>
 <% logs.forEach(log => { %>
